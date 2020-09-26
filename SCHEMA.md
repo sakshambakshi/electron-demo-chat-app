@@ -1,0 +1,9 @@
+-Users
+-Servers
+    - Owner_id -> User 
+    - Mod
+    - Users
+    - Channels
+        - Is Mod only read / write 
+        - Is Mod only write 
+        -Messages

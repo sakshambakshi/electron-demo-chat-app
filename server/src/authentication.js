@@ -1,11 +1,33 @@
 const { AuthenticationService, JWTStrategy } = require('@feathersjs/authentication');
 const { LocalStrategy } = require('@feathersjs/authentication-local');
-const { OAuthStrategy ,  expressOauth } = require('@feathersjs/authentication-oauth');
+const { OAuthStrategy, expressOauth } = require('@feathersjs/authentication-oauth');
 
-class GithubStrategy extends OAuthStrategy{
-  async getEntityData(profile , _existingEntity , _params){
-    console.log(profile , _existingEntity , _params);
-    return null;
+class GithubStrategy extends OAuthStrategy {
+
+  async getEntityQuery(profile) {
+    console.log(profile)
+    return { github_id : profile.id }
+  }
+
+  async getEntityData(profile, _existingEntity, _params) {
+    const { login: github_username, avatar_url: usr_img, id: github_id, email, name } = profile
+    console.log({})
+
+    console.log({
+      github_username,
+      usr_img,
+      github_id,
+      email,
+      name
+    })
+    console.log({})
+    return {
+      github_username,
+      usr_img,
+      github_id,
+      email,
+      name
+    };
   }
 }
 
